@@ -13,6 +13,13 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <img src={logo} className="App-logo" alt="logo" />
         </div>
+        <form>
+          <label>
+            Name:
+            <input type="number" name="name" />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
         <div>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
