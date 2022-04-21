@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const test = String("this is test.");
+
 function App() {
   return (
     <div className="App">
@@ -16,7 +18,7 @@ function App() {
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <p>
-        Hello,World!
+        Hello,World! {test} {test.length}
         </p>
         </div>
         <a
@@ -25,7 +27,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React more at
         </a>
       </header>
     </div>
