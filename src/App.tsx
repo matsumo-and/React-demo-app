@@ -6,14 +6,19 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div>
         <img src={logo} className="App-logo" alt="logo" />
         <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
+        </div>
+        <div>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <p>
         Hello,World!
         </p>
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
