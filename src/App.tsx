@@ -24,37 +24,20 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-        <img src={logo} className="App-logo" alt="logo" />
-        <img src={logo} className="App-logo" alt="logo" />
-        <img src={logo} className="App-logo" alt="logo" />
+          {(() => {
+          const items = [];
+          for (let i = 0; i < 11; i++) {
+              items.push(<img src={logo} className="App-logo" alt="logo" />)
+          }
+          return items;
+          })()}
         </div>
         <div>
-          <Testapp/>
+        <Testapp/>
         <ValueWithOnChange/>
-        </div>
-        <form>
-          <label>
-            Name:
-            <input type="number" name="name" />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-        <textarea>
-          this is sample
-        </textarea>
-        <select>
-        <option value="grapefruit">Grapefruit</option>
-        <option value="lime">Lime</option>
-        <option selected value="coconut">Coconut</option>
-        <option value="mango">Mango</option>
-        </select>
-        <div>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-        Hello,World! {test} {test.length}
-        </p>
+        <TestForm/>
+        <TextInput />
+        <input type="text"/>
         </div>
         <a
           className="App-link"
@@ -68,11 +51,51 @@ function App() {
     </div>
   );
 }
+
+const TextInput: React.FunctionComponent = () => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleCheck = ():void => {
+    if (inputRef.current) inputRef.current.focus();
+  };
+
+  return(
+    <div>
+      <input type="text" ref = {inputRef} />
+      <input type="button" value = "Focus" onClick={handleCheck} />
+    </div>
+  );
+};
+
+function TestForm(){
+
+  return (
+    <>
+      <div>
+      <textarea>
+        this is sample
+      </textarea>
+      </div>
+      <div>
+      <select>
+        <option value="grapefruit">Grapefruit</option>
+        <option value="lime">Lime</option>
+        <option selected value="coconut">Coconut</option>
+        <option value="mango">Mango</option>
+      </select>
+      </div>
+    </>
+  );
+
+}
+
 const ValueWithOnChange: React.FC = () => {
   const [str, setStr] = useState("0123");
   return (
     <div>
+      <p>
       <label>value: {test}</label>
+      </p>
       <input
         type="text"
         value={str}
@@ -86,11 +109,10 @@ const ValueWithOnChange: React.FC = () => {
 };
 
 function Testapp() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const handleSend = (e:any) => {
+  const [profit, setProfit] = useState('');
+  const handleSend = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, password);
+    console.log(profit);
   };
   return (
     <div style={{ textAlign: 'center', marginTop: '2em' }}>
@@ -98,27 +120,17 @@ function Testapp() {
       <form onSubmit={handleSend}>
         <div>
           <label>
-            メールアドレス:
+            収支：
             <input
-              name="email"
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            パスワード：
-            <input
-              name="password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
+              name="profit"
+              type="number"
+              onChange={(e) => setProfit(e.target.value)}
             />
           </label>
         </div>
         <button
         type="submit">
-          Submit
+          Calculate
           </button>
       </form>
     </div>
